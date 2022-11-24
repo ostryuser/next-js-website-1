@@ -15,6 +15,7 @@ const ImageContainer = styled.div`
   height: 300px;
   position: relative;
   overflow: hidden;
+  margin-bottom: 20px;
 `;
 const Container = styled.div`
   height: 50%;
@@ -73,29 +74,64 @@ const Button = styled.button`
   }
 `;
 
-const HomeCardMobile = ({ img, heading, desc, button, refresh, buttonURL }) => {
+const HomeCardMobile = ({
+  img,
+  heading,
+  desc,
+  button,
+  refresh,
+  buttonURL,
+  reverse,
+}) => {
   return (
     <CardContainer>
-      <ImageContainer>
-        <Image src={img} layout="fill" objectFit="cover" alt="" />
-      </ImageContainer>
-      <Container>
-        <Heading>{heading}</Heading>
-        <Desc>{desc}</Desc>
-        {button ? (
-          <>
-            {refresh ? (
-              <Button>
-                <a href={buttonURL}>{button}</a>
-              </Button>
-            ) : (
-              <Link href={buttonURL}>
-                <Button>{button}</Button>
-              </Link>
-            )}
-          </>
-        ) : null}
-      </Container>
+      {reverse ? (
+        <>
+          <Container>
+            <Heading>{heading}</Heading>
+            <Desc>{desc}</Desc>
+            {button ? (
+              <>
+                {refresh ? (
+                  <Button>
+                    <a href={buttonURL}>{button}</a>
+                  </Button>
+                ) : (
+                  <Link href={buttonURL}>
+                    <Button>{button}</Button>
+                  </Link>
+                )}
+              </>
+            ) : null}
+          </Container>
+          <ImageContainer>
+            <Image src={img} layout="fill" objectFit="cover" alt="" />
+          </ImageContainer>
+        </>
+      ) : (
+        <>
+          <ImageContainer>
+            <Image src={img} layout="fill" objectFit="cover" alt="" />
+          </ImageContainer>
+          <Container>
+            <Heading>{heading}</Heading>
+            <Desc>{desc}</Desc>
+            {button ? (
+              <>
+                {refresh ? (
+                  <Button>
+                    <a href={buttonURL}>{button}</a>
+                  </Button>
+                ) : (
+                  <Link href={buttonURL}>
+                    <Button>{button}</Button>
+                  </Link>
+                )}
+              </>
+            ) : null}
+          </Container>
+        </>
+      )}
     </CardContainer>
   );
 };
